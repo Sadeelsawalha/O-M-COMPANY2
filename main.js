@@ -4,10 +4,26 @@ function clearStorage() {
     localStorage.removeItem("currentUser");
 
     const defaultUsers = {
-        "sadeel": { pass: "123456", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
-        "ahmad":  { pass: "9999", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
-        "rose":   { pass: "1234", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
-        "admin":  { pass: "admin_2025", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" }
+        "sadeel":{ pass: "123456", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "ahmad":{ pass: "9999", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "mohammad":{ pass: "1111", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "fedda":{ pass: "2222", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "bilal":{ pass: "2020", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "ahmad":{ pass: "3245", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "noor":{ pass: "3333", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "hamza":{ pass: "5555", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "hazem":{ pass: "4444", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "ibrahem":{ pass: "6666", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "bader":{ pass: "8888", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "rose": { pass: "1234", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "bashar":{ pass: "7777", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "shade": { pass: "7890", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "hanee":{ pass: "3030", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "saleh":{ pass: "4040", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "abdullah": { pass: "1010", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "mahmood": { pass: "4567", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" },
+        "admin":{ pass: "admin_2025", hours:0, lastIn:"", lastOut:"", inLocation:"", outLocation:"", profileImage:"" }
+        
     };
     localStorage.setItem("users", JSON.stringify(defaultUsers));
 
