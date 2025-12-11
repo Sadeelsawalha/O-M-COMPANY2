@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="user-box">
+    <h1>Welcome, <span id="userName"></span></h1>
+
+    <div class="profile-area">
+        <img id="profileImg" class="profile-img" src="default.png">
+        <input type="file" id="uploadImg" accept="image/*" onchange="uploadImage()">
+    </div>
+
+    <button onclick="checkIn()">Check In</button>
+    <button onclick="checkOut()">Check Out</button>
+
+    <p id="status"></p>
+    <p>Total Hours: <span id="hours"></span></p>
+
+    <button onclick="logout()" class="logout">Logout</button>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
+

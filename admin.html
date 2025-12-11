@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h2>Admin Dashboard</h2>
+
+<button onclick="clearStorage()">مسح البيانات القديمة</button>
+<button onclick="window.location.href='add-user.html'" style="margin-left: 10px;">Add New User</button>
+
+<table>
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Total Hours</th>
+            <th>Last Check In</th>
+            <th>Last Check Out</th>
+        </tr>
+    </thead>
+    <tbody id="adminTable"></tbody>
+</table>
+
+<script src="main.js"></script>
+</body>
+</html>
