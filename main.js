@@ -152,3 +152,34 @@ function logout() {
     localStorage.removeItem("currentUser");
     window.location.href = "index.html";
 }
+function displayAdminHours() {
+    const users = JSON.parse(localStorage.getItem("users"));
+    let table = "";
+
+    for (let u in users) {
+        if (u !== "admin") {
+            let totalHours = users[u].hours || 0;
+
+            // إضافة الوقت الحالي إذا المستخدم داخل ولم يخرج بعد
+            if (users[u].lastIn) {
+                const lastInDate = new Date(users[u].lastIn);
+                const lastOutDate = users[u].lastOut ? new Date(users[u].lastOut) : new Date();
+
+                // حساب الفرق بالساعات بين آخر Check In و Check Out أو الآن
+                totalHours += (lastOutDate - lastInDate) / 1000 / 3600;
+            }
+
+            table += `<tr>
+                <td>${u}</td>
+                <td>${totalHours.toFixed(2)}</td>
+                <td>${users[u].lastIn || "-"}</td>
+                <td>${users[u].lastOut || "-"}</td>
+            </tr>`;
+        }
+    }
+
+    document.getElementById("adminTable").innerHTML = table;
+}
+
+// نفذ الدالة بعد تحميل الصفحة
+document.addEventListener("DOMContentLoaded", displayAdminHours);
