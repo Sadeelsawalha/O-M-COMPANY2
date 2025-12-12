@@ -152,34 +152,50 @@ function logout() {
     localStorage.removeItem("currentUser");
     window.location.href = "index.html";
 }
-function displayAdminHours() {
-    const users = JSON.parse(localStorage.getItem("users"));
-    let table = "";
-
-    for (let u in users) {
-        if (u !== "admin") {
-            let totalHours = users[u].hours || 0;
-
-            // إضافة الوقت الحالي إذا المستخدم داخل ولم يخرج بعد
-            if (users[u].lastIn) {
-                const lastInDate = new Date(users[u].lastIn);
-                const lastOutDate = users[u].lastOut ? new Date(users[u].lastOut) : new Date();
-
-                // حساب الفرق بالساعات بين آخر Check In و Check Out أو الآن
-                totalHours += (lastOutDate - lastInDate) / 1000 / 3600;
-            }
-
-            table += `<tr>
-                <td>${u}</td>
-                <td>${totalHours.toFixed(2)}</td>
-                <td>${users[u].lastIn || "-"}</td>
-                <td>${users[u].lastOut || "-"}</td>
-            </tr>`;
-        }
-    }
-
-    document.getElementById("adminTable").innerHTML = table;
+// تنسيق الوقت ليظهر بشكل واضح
+function formatTime(dateString) {
+    if (!dateString) return "-";
+    const d = new Date(dateString);
+    const hours = d.getHours().toString().padStart(2, "0");
+    const minutes = d.getMinutes().toString().padStart(2, "0");
+    return `${hours}:${minutes}`;
 }
 
-// نفذ الدالة بعد تحميل الصفحة
-document.addEventListener("DOMContentLoaded", displayAdminHours);
+// لوحة admin
+if (window.location.pathname.includes("admin.html")) {
+    const users = JSON.parse(localStorage.getItem("users"));
+    let tableRows = "";
+
+    for (let user in users) {
+        if (user === "admin") continue; // تجاهل الأدمن
+
+        const data = users[user];
+
+        const lastIn = formatTime(data.lastIn);
+        const lastOut = formatTime(data.lastOut);
+
+        // حساب الساعات المجموعية
+        let totalHours = data.hours || 0;
+
+        // إذا الموظف دخل وما طلع (LastIn موجود و LastOut فاضي)
+        if (data.lastIn && !data.lastOut) {
+            const now = new Date();
+            const diff = (now - new Date(data.lastIn)) / 1000 / 3600;
+            totalHours += diff;
+        }
+
+        tableRows += `
+            <tr>
+                <td>${user}</td>
+                <td>${lastIn}</td>
+                <td>${lastOut}</td>
+                <td>${totalHours.toFixed(2)}</td>
+                <td>${data.inLocation || "-"}</td>
+                <td>${data.outLocation || "-"}</td>
+            </tr>
+        `;
+    }
+
+    document.getElementById("adminTable").innerHTML = tableRows;
+}
+
